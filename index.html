@@ -1,0 +1,288 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500&family=Raleway:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .hc-root {
+    background: #ffc7a7;
+    color: #000;
+    font-family: 'Raleway', sans-serif;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .hc-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .hc-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; height: 70%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hc-vert-line {
+    position: absolute;
+    right: clamp(2rem, 8vw, 7rem);
+    top: 28%;
+    height: 22%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(122,46,0,0.3), transparent);
+    opacity: 0;
+    animation: hcFadeIn 2s ease forwards 2s;
+    z-index: 1;
+  }
+
+  .hc-page {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(1.5rem, 5vh, 4rem) clamp(1.5rem, 8vw, 7rem);
+  }
+
+  .hc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    animation: hcFadeUp 1.2s ease forwards 0.3s;
+  }
+
+  .hc-wordmark {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.62rem, 1.1vw, 0.9rem);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #000;
+  }
+  .hc-wordmark span { color: #7a2e00; }
+
+  .hc-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(0.48rem, 0.7vw, 0.6rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #000;
+  }
+  .hc-dot::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #7a2e00;
+    box-shadow: 0 0 8px rgba(122,46,0,0.4);
+    animation: hcPulse 2.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .hc-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(1.2rem, 2.5vh, 2.5rem);
+    padding: clamp(2rem, 5vh, 4rem) 0;
+  }
+
+  .hc-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.52rem, 0.9vw, 0.72rem);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #7a2e00;
+    line-height: 1.7;
+    opacity: 0;
+    animation: hcFadeUp 1s ease forwards 0.7s;
+  }
+
+  .hc-headline {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: clamp(2.4rem, 8vw, 8rem);
+    line-height: 1.0;
+    letter-spacing: 0.04em;
+    color: #000;
+    margin: 0;
+    opacity: 0;
+    animation: hcFadeUp 1.2s ease forwards 0.9s;
+  }
+  .hc-headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: #7a2e00;
+  }
+
+  .hc-divider {
+    width: 3.5rem;
+    height: 1px;
+    background: linear-gradient(to right, #7a2e00, transparent);
+    opacity: 0;
+    animation: hcFadeUp 1s ease forwards 1.2s;
+  }
+
+  .hc-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: clamp(1.2rem, 3vw, 2rem);
+    opacity: 0;
+    animation: hcFadeUp 1s ease forwards 1.6s;
+    padding-bottom: 0.5rem;
+  }
+
+  .hc-contact-label {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(0.5rem, 0.7vw, 0.58rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 0.35rem;
+  }
+  .hc-contact-link {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.65rem, 1vw, 0.78rem);
+    letter-spacing: 0.06em;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .hc-contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: #7a2e00;
+    transition: width 0.4s ease;
+  }
+  .hc-contact-link:hover { color: #7a2e00; }
+  .hc-contact-link:hover::after { width: 100%; }
+
+  .hc-offices {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 5rem);
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .hc-office-city {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(0.48rem, 0.7vw, 0.58rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7a2e00;
+    margin-bottom: 0.15rem;
+  }
+  .hc-office-addr {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+    line-height: 1.7;
+    color: #000;
+    letter-spacing: 0.02em;
+  }
+
+  .hc-tagline {
+    font-family: 'Raleway', sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    font-size: clamp(0.72rem, 1.1vw, 0.9rem);
+    color: #000;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    align-self: flex-end;
+  }
+
+  @media (max-width: 900px) {
+    .hc-vert-line { display: none; }
+    .hc-tagline { width: 100%; text-align: left; }
+    .hc-offices { gap: 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hc-page { padding: 1.5rem 1.5rem 2rem; }
+    .hc-vert-line { display: none; }
+    .hc-footer { flex-direction: column; align-items: flex-start; gap: 1.8rem; }
+    .hc-offices { flex-direction: column; gap: 1.2rem; width: 100%; }
+    .hc-tagline { width: 100%; border-top: 1px solid rgba(122,46,0,0.2); padding-top: 1.2rem; }
+  }
+
+  @media (max-width: 380px) {
+    .hc-page { padding: 1.2rem 1.2rem 1.5rem; }
+    .hc-headline { font-size: 2rem; }
+    .hc-wordmark { font-size: 0.58rem; letter-spacing: 0.22em; }
+    .hc-eyebrow { font-size: 0.48rem; }
+  }
+
+  @keyframes hcFadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes hcFadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  @keyframes hcPulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+</style>
+
+<div class="hc-root">
+  <div class="hc-noise"></div>
+  <div class="hc-glow"></div>
+  <div class="hc-vert-line"></div>
+
+  <div class="hc-page">
+    <header class="hc-header">
+      <div class="hc-wordmark">113 <span>Spring</span></div>
+      <div class="hc-dot">Active</div>
+    </header>
+
+    <main class="hc-center">
+      <p class="hc-eyebrow">Growth equity for companies reshaping health and human potential.</p>
+      <h1 class="hc-headline">
+        Where <em>113 Spring</em><br>Scales,<br>Returns Follow.
+      </h1>
+      <div class="hc-divider"></div>
+    </main>
+
+    <footer class="hc-footer">
+      <div>
+        <p class="hc-contact-label">Enquiries</p>
+        <a class="hc-contact-link" href="mailto:office@113s.us">office@113s.us</a>
+      </div>
+      <div class="hc-offices">
+        <div>
+          <p class="hc-office-city">New York</p>
+          <p class="hc-office-addr">445 Park Ave Suite 15F<br>New York, NY 10022</p>
+        </div>
+        <div>
+          <p class="hc-office-city">Luxembourg</p>
+          <p class="hc-office-addr">17 Bd Friedrich Wilhelm Raiffeisen<br>L-2411 Luxembourg</p>
+        </div>
+        <div>
+          <p class="hc-office-city">London</p>
+          <p class="hc-office-addr">One Canada Square<br>Canary Wharf, E14 5AB</p>
+        </div>
+      </div>
+      <p class="hc-tagline">Capital deployed<br>with conscience.</p>
+    </footer>
+  </div>
+</div>
