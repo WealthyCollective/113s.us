@@ -14,235 +14,167 @@
   }
 
   .hc-noise {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    opacity: 0.5;
-    z-index: 0;
+    pointer-events: none; opacity: 0.5; z-index: 0;
   }
 
   .hc-glow {
-    position: absolute;
-    top: 50%; left: 50%;
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 70%; height: 70%;
     background: radial-gradient(ellipse at center, rgba(255,255,255,0.35) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
   .hc-vert-line {
     position: absolute;
-    right: clamp(2rem, 8vw, 7rem);
-    top: 28%;
-    height: 22%;
-    width: 1px;
+    right: clamp(2rem, 8vw, 7rem); top: 28%; height: 22%; width: 1px;
     background: linear-gradient(to bottom, transparent, rgba(122,46,0,0.3), transparent);
-    opacity: 0;
-    animation: hcFadeIn 2s ease forwards 2s;
-    z-index: 1;
+    opacity: 0; animation: hcFadeIn 2s ease forwards 2s; z-index: 1;
   }
 
   .hc-page {
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    display: grid; grid-template-rows: auto 1fr auto;
     padding: clamp(1.5rem, 5vh, 4rem) clamp(1.5rem, 8vw, 7rem);
   }
 
   .hc-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    opacity: 0;
-    animation: hcFadeUp 1.2s ease forwards 0.3s;
+    display: flex; align-items: center; justify-content: space-between;
+    opacity: 0; animation: hcFadeUp 1.2s ease forwards 0.3s;
   }
 
-  .hc-wordmark {
-    font-family: 'Syne', sans-serif;
-    font-weight: 400;
-    font-size: clamp(0.62rem, 1.1vw, 0.9rem);
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: #000;
-  }
-  .hc-wordmark span { color: #7a2e00; }
+  .hc-logo { height: 32px; width: auto; display: block; }
+  .hc-logo svg { height: 32px; width: auto; display: block; }
+  .hc-logo svg path, .hc-logo svg polygon { fill: #000 !important; }
 
   .hc-dot {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
     font-family: 'Syne', sans-serif;
     font-size: clamp(0.48rem, 0.7vw, 0.6rem);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #000;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #000;
   }
   .hc-dot::before {
-    content: '';
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #7a2e00;
-    box-shadow: 0 0 8px rgba(122,46,0,0.4);
-    animation: hcPulse 2.5s ease-in-out infinite;
-    flex-shrink: 0;
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: #7a2e00; box-shadow: 0 0 8px rgba(122,46,0,0.4);
+    animation: hcPulse 2.5s ease-in-out infinite; flex-shrink: 0;
   }
 
   .hc-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; flex-direction: column; justify-content: center;
     gap: clamp(1.2rem, 2.5vh, 2.5rem);
     padding: clamp(2rem, 5vh, 4rem) 0;
   }
 
   .hc-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-weight: 300;
+    font-family: 'Syne', sans-serif; font-weight: 300;
     font-size: clamp(0.52rem, 0.9vw, 0.72rem);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #7a2e00;
-    line-height: 1.7;
-    opacity: 0;
-    animation: hcFadeUp 1s ease forwards 0.7s;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: #7a2e00; line-height: 1.7;
+    opacity: 0; animation: hcFadeUp 1s ease forwards 0.7s;
   }
 
   .hc-headline {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 200;
+    font-family: 'Raleway', sans-serif; font-weight: 200;
     font-size: clamp(2.4rem, 8vw, 8rem);
-    line-height: 1.0;
-    letter-spacing: 0.04em;
-    color: #000;
-    margin: 0;
-    opacity: 0;
-    animation: hcFadeUp 1.2s ease forwards 0.9s;
+    line-height: 1.0; letter-spacing: 0.04em; color: #000; margin: 0;
+    opacity: 0; animation: hcFadeUp 1.2s ease forwards 0.9s;
   }
-  .hc-headline em {
-    font-style: italic;
-    font-weight: 300;
-    color: #7a2e00;
-  }
+  .hc-headline em { font-style: italic; font-weight: 300; color: #7a2e00; }
 
   .hc-divider {
-    width: 3.5rem;
-    height: 1px;
+    width: 3.5rem; height: 1px;
     background: linear-gradient(to right, #7a2e00, transparent);
-    opacity: 0;
-    animation: hcFadeUp 1s ease forwards 1.2s;
+    opacity: 0; animation: hcFadeUp 1s ease forwards 1.2s;
   }
 
   .hc-footer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: clamp(1.2rem, 3vw, 2rem);
-    opacity: 0;
-    animation: hcFadeUp 1s ease forwards 1.6s;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: clamp(1.2rem, 3vw, 2rem);
+    opacity: 0; animation: hcFadeUp 1s ease forwards 1.6s;
     padding-bottom: 0.5rem;
   }
 
   .hc-contact-label {
     font-family: 'Syne', sans-serif;
     font-size: clamp(0.5rem, 0.7vw, 0.58rem);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #000;
-    margin-bottom: 0.35rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: #000; margin-bottom: 0.35rem;
   }
   .hc-contact-link {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
+    font-family: 'Raleway', sans-serif; font-weight: 300;
     font-size: clamp(0.65rem, 1vw, 0.78rem);
-    letter-spacing: 0.06em;
-    color: #000;
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
+    letter-spacing: 0.06em; color: #000; text-decoration: none;
+    position: relative; transition: color 0.3s ease;
   }
   .hc-contact-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0;
-    width: 0; height: 1px;
-    background: #7a2e00;
-    transition: width 0.4s ease;
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 1px; background: #7a2e00; transition: width 0.4s ease;
   }
   .hc-contact-link:hover { color: #7a2e00; }
   .hc-contact-link:hover::after { width: 100%; }
 
-  .hc-offices {
-    display: flex;
-    gap: clamp(1.5rem, 4vw, 5rem);
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
+  .hc-offices { display: flex; gap: clamp(1.5rem, 4vw, 5rem); flex-wrap: wrap; align-items: flex-start; }
 
   .hc-office-city {
     font-family: 'Syne', sans-serif;
     font-size: clamp(0.48rem, 0.7vw, 0.58rem);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #7a2e00;
-    margin-bottom: 0.15rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #7a2e00; margin-bottom: 0.15rem;
   }
   .hc-office-addr {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 300;
+    font-family: 'Raleway', sans-serif; font-weight: 300;
     font-size: clamp(0.6rem, 0.85vw, 0.72rem);
-    line-height: 1.7;
-    color: #000;
-    letter-spacing: 0.02em;
+    line-height: 1.7; color: #000; letter-spacing: 0.02em;
   }
 
   .hc-tagline {
-    font-family: 'Raleway', sans-serif;
-    font-style: italic;
-    font-weight: 200;
+    font-family: 'Raleway', sans-serif; font-style: italic; font-weight: 200;
     font-size: clamp(0.72rem, 1.1vw, 0.9rem);
-    color: #000;
-    letter-spacing: 0.06em;
-    line-height: 1.6;
-    align-self: flex-end;
+    color: #000; letter-spacing: 0.06em; line-height: 1.6; align-self: flex-end;
   }
+
+  /* Favicon display indicator */
+  .hc-favicon-badge {
+    position: absolute; top: 12px; right: 12px;
+    width: 24px; height: 24px; border-radius: 50%; overflow: hidden;
+    z-index: 10; opacity: 0.6;
+  }
+  .hc-favicon-badge img { width: 100%; height: 100%; object-fit: cover; }
 
   @media (max-width: 900px) {
     .hc-vert-line { display: none; }
     .hc-tagline { width: 100%; text-align: left; }
     .hc-offices { gap: 1.5rem; }
   }
-
   @media (max-width: 600px) {
     .hc-page { padding: 1.5rem 1.5rem 2rem; }
-    .hc-vert-line { display: none; }
     .hc-footer { flex-direction: column; align-items: flex-start; gap: 1.8rem; }
     .hc-offices { flex-direction: column; gap: 1.2rem; width: 100%; }
     .hc-tagline { width: 100%; border-top: 1px solid rgba(122,46,0,0.2); padding-top: 1.2rem; }
   }
-
   @media (max-width: 380px) {
     .hc-page { padding: 1.2rem 1.2rem 1.5rem; }
     .hc-headline { font-size: 2rem; }
-    .hc-wordmark { font-size: 0.58rem; letter-spacing: 0.22em; }
     .hc-eyebrow { font-size: 0.48rem; }
   }
 
-  @keyframes hcFadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes hcFadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
-  @keyframes hcPulse {
-    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
-  }
+  @keyframes hcFadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes hcFadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hcPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 </style>
+
+<!-- Favicon injected via JS into document head -->
+<script>
+  (function() {
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/png';
+    link.href = 'data:image/png;base64,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';
+    document.head.appendChild(link);
+    document.title = '113 Spring';
+  })();
+</script>
 
 <div class="hc-root">
   <div class="hc-noise"></div>
@@ -251,7 +183,22 @@
 
   <div class="hc-page">
     <header class="hc-header">
-      <div class="hc-wordmark">113 <span>Spring</span></div>
+      <div class="hc-logo">
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+          <path fill="#000" d="M552.5,723.5v-127.1c-.1,0-15.8.5-15.8.5l-.7,102.9-63.3-103.2-18.9-.2v128.6s16.2-.3,16.2-.3l1-102,62.8,102.2c6.9.5,14.1.2,18.6-1.4Z"/>
+          <path fill="#000" d="M836.9,660.1h-51.7c-2.7-.1-3.2,11.8-.5,11.9l36.4.9c1.9,11.1-2.2,24.1-11.1,32.3-10.5,9.7-24.7,11-38.9,6.9-28.4-8.4-34.3-50.8-23.9-78.1,7.1-18.8,24.3-28.8,43.8-26.5,16.1,1.9,27.3,12.4,29.2,29.7l15.6.2c-.6-23.9-18.2-39.5-40.7-42.8-27.8-4-54.1,9.1-64.1,36.1-7.3,19.8-7.3,41.6.2,61.5,9.7,25.9,35.5,39.4,62.3,34.4,12.3-2.3,20.4-8.7,27.6-19.6l1.6,18.1,14.4.3v-65.2Z"/>
+          <polygon fill="#000" points="245.6 595.3 177.8 595.3 177.4 608.7 203.3 609.1 203.2 711 177.5 711.7 177.8 724.8 245.4 725 245.7 711.5 219.9 711.3 219.8 609.1 246.1 608.6 245.6 595.3"/>
+          <path fill="#000" d="M477.5,99l20.2.5v78.4s-26,.8-26,.8l1.2,13.3h66.5c0,0,.4-13.6.4-13.6l-25.8-.3V63.4c-5.6-1.3-14.7-1.6-15,1.9-.7,6.3-1.6,15.4-5,17.9-12.6,9.2-24.6-3.3-24.1,11.4,0,2.5,3.8,4.3,7.7,4.4Z"/>
+          <path fill="#000" d="M470.5,403.4c17.8,0,29.6.2,43.2-.8,21.7-1.6,35.2-19,34-39.2-1.1-18.1-15.8-33.8-36.4-33.9l-57.7-.3v129c0,0,16.4,0,16.4,0l.5-54.7ZM506.6,342.8c13.8,0,23.8,9,24.7,21.2,1,12.5-7,25.7-22.9,25.8l-37.8.3v-47.4c-.1,0,36,0,36,0Z"/>
+          <path fill="#000" d="M240.5,391.3l-42-9.8c-8.3-1.9-15.6-9.1-16.5-16.2-1-7.6,2.6-16.2,9.6-20,12.7-6.9,26.9-6.6,40.5-2.3,9.4,2.9,14.8,13,17,21.6,2,3.1,11.7,3.3,15,1.7,1.1-13.7-7.4-26.3-20.1-32.5-17.5-8.6-38.5-8.6-56.5-1.6-14.9,5.8-22.7,18.4-21.8,33.6.8,13.3,11.2,25.7,26.3,29.2l41.8,9.7c9.4,2.2,16.6,9.2,17.2,17.3.7,8.9-3.4,18-12.5,22-19.2,8.4-55.1,6.1-60-22.8l-15.8-.3c.9,16.8,10.3,28.3,25.2,34.4,18.5,7.6,41.1,8.1,60.2-1,15.1-7.2,20.7-21.7,18.7-36.8-1.6-12-12.1-22.7-26.5-26.1Z"/>
+          <path fill="#000" d="M184,98.8l19.7.7v78.5s-27.3.7-27.3.7l.5,13.4h67.6c0,0,.5-13.5.5-13.5l-25-.6v-114c-3.7-2.3-14.6-2.6-15,1.2-.7,6.2-1.6,15.3-4.9,17.8-9.1,6.9-24.3,1.2-23.9,6.3l.6,8c.1,1.6,5.3,1.2,7.3,1.3Z"/>
+          <path fill="#000" d="M760.6,189.8c24.6,9.9,61.3,3.8,68.6-20.6,6.2-20.6-.9-36.3-23.4-44.7,13.1-4.3,21-14.2,21.9-26,1-13-4.4-25.1-16.5-31.6-15.1-8-33.9-8.4-49.7-1.8-13.2,5.5-21.8,17.1-21,32.6l14.7-.3c1.3-18,16.3-25,32.1-24.1,13.3.8,23.9,8.9,24.5,21.3.7,12.4-8.2,22.8-21.8,24l-18.1,1.6c-1.8,2.2-1.1,11.8,1.8,11.9,10.2,0,24.9.2,32.9,6.3,9.8,7.4,10.7,19.8,5.7,29.9-4,8.1-14.1,12.9-25.8,13.3-18.9.7-32.7-8.7-34.2-27.3-4.2-.8-11.4-1-15.2-.4-.6,16.6,8.7,29.8,23.4,35.8Z"/>
+          <path fill="#000" d="M737.6,329.5v128.7c6.7.3,12.5.1,16.8-.6v-53.5c0,0,37.5.3,37.5.3,28.3.2,19.1,34.3,26.1,53.8l17.5.2c-10.1-27.5,2.1-51.5-26.4-61.3,18.7-4.9,27.7-19.1,25.3-38.1-5.3-41.5-66.9-27.5-96.8-29.4ZM798.7,390c-15.3,1.3-29.3,1.1-44.5.8v-48.1s39.9,0,39.9,0c13.5,0,23.2,9.1,24,21.3.8,11.3-4.5,24.7-19.3,26Z"/>
+          <polygon fill="#000" points="453.1 915.2 413.4 866.5 402.4 866.5 402.4 938.5 415.7 938.5 415.7 889.7 455.4 938.5 466.4 938.5 466.4 866.5 453.1 866.5 453.1 915.2"/>
+          <polygon fill="#000" points="530.4 866.5 509.1 901.5 488 866.5 473.7 866.5 502 913.3 502 938.5 515.3 938.5 515.3 913.1 543.5 866.5 530.4 866.5"/>
+          <path fill="#000" d="M564.8,884.3c2.3-2.3,5-4,8.1-5.2,3.1-1.2,6.6-1.9,10.3-1.9s7.3.7,10.5,2.1c3.2,1.4,6.1,3.5,8.7,6.3l8.6-8.1c-3.4-4-7.5-7-12.3-9-4.9-2-10.3-3-16.2-3s-10.7.9-15.3,2.7c-4.7,1.8-8.7,4.4-12.2,7.7-3.5,3.3-6.2,7.3-8.1,11.8-1.9,4.5-2.9,9.5-2.9,14.8s1,10.3,2.9,14.8c1.9,4.5,4.6,8.5,8.1,11.8,3.5,3.3,7.5,5.9,12.2,7.7,4.7,1.8,9.8,2.7,15.3,2.7s11.4-1,16.3-3.1c4.9-2.1,9-5,12.3-8.9l-8.6-8.2c-2.6,2.9-5.5,5-8.7,6.4-3.2,1.4-6.7,2.1-10.5,2.1s-7.2-.6-10.3-1.9c-3.1-1.2-5.8-3-8.1-5.2-2.3-2.3-4.1-4.9-5.3-8-1.3-3.1-1.9-6.5-1.9-10.2s.6-7.1,1.9-10.2c1.3-3.1,3.1-5.8,5.3-8Z"/>
+        </svg>
+      </div>
       <div class="hc-dot">Active</div>
     </header>
 
@@ -274,12 +221,12 @@
           <p class="hc-office-addr">445 Park Ave Suite 15F<br>New York, NY 10022</p>
         </div>
         <div>
-          <p class="hc-office-city">Luxembourg</p>
-          <p class="hc-office-addr">17 Bd Friedrich Wilhelm Raiffeisen<br>L-2411 Luxembourg</p>
-        </div>
-        <div>
           <p class="hc-office-city">London</p>
           <p class="hc-office-addr">One Canada Square<br>Canary Wharf, E14 5AB</p>
+        </div>
+        <div>
+          <p class="hc-office-city">Abu Dhabi</p>
+          <p class="hc-office-addr">Al Khatem Tower 14th Floor<br>ADGM Al Maryah Island<br>Abu Dhabi</p>
         </div>
       </div>
       <p class="hc-tagline">Capital deployed<br>with conscience.</p>
